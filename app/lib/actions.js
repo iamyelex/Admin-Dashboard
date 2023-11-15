@@ -6,6 +6,7 @@ import bcrypt from "bcrypt";
 
 import { connectToDb } from "./utils";
 import { Product, User } from "./models";
+import { signIn } from "../auth";
 
 // CREATE
 export const addUser = async function (formData) {
@@ -154,5 +155,18 @@ export const updateProduct = async function (formData) {
   } finally {
     revalidatePath("/dashboard/products");
     redirect("/dashboard/products");
+  }
+};
+
+// AUTHENTICATE
+export const logIn = async function (formData) {
+  const { username, password } = Object.fromEntries(formData);
+  console.log(username, password);
+
+  try {
+    await signIn("credentials", { username, password });
+  } catch (error) {
+    console.log(error);
+    throw error;
   }
 };
