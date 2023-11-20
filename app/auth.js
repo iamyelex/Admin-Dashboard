@@ -1,6 +1,5 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-
 import bcrypt from "bcrypt";
 
 import { authConfig } from "./authConfig";
@@ -10,16 +9,25 @@ import { User } from "./lib/models";
 const login = async function (credentials) {
   try {
     connectToDb();
-    const user = User.findOne({ username: credentials.username });
 
-    if (!user) throw new Error("Wrong Username or Password");
+    const user = await User.findOne({ username: credentials.username }).exec();
+
+    console.log(user);
+
+    if (!user) {
+      console.log("No user");
+      throw new Error("Wrong Username or Password");
+    }
 
     const isPasswordCorrect = await bcrypt.compare(
       credentials.password,
       user.password
     );
 
-    if (!isPasswordCorrect) throw new Error("Wrong Username or Password");
+    if (!isPasswordCorrect) {
+      console.log("wrong password");
+      throw new Error("Wrong Username or Password");
+    }
 
     return user;
   } catch (error) {
@@ -33,6 +41,7 @@ export const { signIn, signOut, auth } = NextAuth({
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
+        console.log(credentials);
         try {
           const user = await login(credentials);
           return user;
@@ -43,4 +52,20 @@ export const { signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.username = user.username;
+        token.img = user.img;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.username = token.username;
+        session.img = token.img;
+      }
+      return session;
+    },
+  },
 });

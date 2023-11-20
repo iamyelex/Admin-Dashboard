@@ -3,10 +3,14 @@ import { MdLogout } from "react-icons/md";
 
 import { sidebarItems } from "@/app/data/Sidebar";
 import MenuLink from "./menuLink/menuLink";
+import { auth, signOut } from "@/app/auth";
 
 import styles from "@/app/ui/dashboard/sidebar/sidebar.module.css";
 
-export default function Sidebar() {
+export default async function Sidebar() {
+  const session = await auth();
+  console.log(session);
+
   return (
     <div className={styles.container}>
       <div className={styles.user}>
@@ -32,17 +36,17 @@ export default function Sidebar() {
           </li>
         ))}
       </ul>
-      {/* <form
+      <form
         action={async () => {
           "use server";
           await signOut();
         }}
-      > */}
-      <button className={styles.logout}>
-        <MdLogout />
-        Logout
-      </button>
-      {/* </form> */}
+      >
+        <button className={styles.logout}>
+          <MdLogout />
+          Logout
+        </button>
+      </form>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import bcrypt from "bcrypt";
 
 import { connectToDb } from "./utils";
 import { Product, User } from "./models";
-import { signIn } from "../auth";
+import { signIn } from "@/app/auth";
 
 // CREATE
 export const addUser = async function (formData) {
@@ -18,6 +18,7 @@ export const addUser = async function (formData) {
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
+
     const newUser = new User({
       username,
       email,
@@ -44,6 +45,7 @@ export const addProduct = async function (formData) {
 
   try {
     connectToDb();
+
     const newProduct = new Product({
       title,
       desc,
@@ -88,9 +90,9 @@ export const deleteProduct = async function (formData) {
     await Product.findByIdAndDelete(id);
   } catch (error) {
     console.log(error);
-    throw new Error("failed to delete user");
+    throw new Error("failed to delete product");
   } finally {
-    revalidatePath("/dashboard/users");
+    revalidatePath("/dashboard/products");
   }
 };
 
@@ -159,9 +161,9 @@ export const updateProduct = async function (formData) {
 };
 
 // AUTHENTICATE
-export const logIn = async function (formData) {
+export const authenticate = async function (formData) {
   const { username, password } = Object.fromEntries(formData);
-  console.log(username, password);
+  // console.log(username, password);
 
   try {
     await signIn("credentials", { username, password });
