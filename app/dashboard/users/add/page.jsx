@@ -1,6 +1,11 @@
 import { addUser } from "@/app/lib/actions";
 import styles from "@/app/ui/dashboard/users/addUser/addUser.module.css";
 
+export const metadata = {
+  title: "Create User",
+  description: "Create users log",
+};
+
 export default function AddUserPage() {
   return (
     <div className={styles.container}>

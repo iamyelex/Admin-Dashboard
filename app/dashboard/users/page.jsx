@@ -8,6 +8,11 @@ import Pagination from "@/app/ui/dashboard/pagination/pagination";
 
 import styles from "@/app/ui/dashboard/users/users.module.css";
 
+export const metadata = {
+  title: "Users",
+  description: "User Page",
+};
+
 export default async function UsersPage({ searchParams }) {
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;

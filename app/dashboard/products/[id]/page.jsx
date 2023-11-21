@@ -6,6 +6,11 @@ import notFound from "./not-found";
 
 import styles from "@/app/ui/dashboard/products/singleProduct/singleProduct.module.css";
 
+export const metadata = {
+  title: "View Product",
+  description: "view a product ",
+};
+
 export default async function SingleProductPage({ params }) {
   const { id } = params;
 

@@ -6,6 +6,11 @@ import { updateUser } from "@/app/lib/actions";
 import styles from "@/app/ui/dashboard/users/singleUser/singleUser.module.css";
 import notFound from "./not-found";
 
+export const metadata = {
+  title: "View User",
+  description: "View user info",
+};
+
 export default async function SingleUserPage({ params }) {
   const { id } = params;
 

@@ -2,6 +2,11 @@ import { addProduct } from "@/app/lib/actions";
 
 import styles from "@/app/ui/dashboard/products/addProduct/addProduct.module.css";
 
+export const metadata = {
+  title: "Add Product",
+  description: "Add product to the database",
+};
+
 export default function AddProductPage() {
   return (
     <div className={styles.container}>
