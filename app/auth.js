@@ -12,8 +12,6 @@ const login = async function (credentials) {
 
     const user = await User.findOne({ username: credentials.username }).exec();
 
-    console.log(user);
-
     if (!user) {
       console.log("No user");
       throw new Error("Wrong Username or Password");
@@ -41,7 +39,6 @@ export const { signIn, signOut, auth } = NextAuth({
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
-        console.log(credentials);
         try {
           const user = await login(credentials);
           return user;

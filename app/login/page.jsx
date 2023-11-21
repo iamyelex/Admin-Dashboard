@@ -2,6 +2,8 @@
 
 import { authenticate } from "@/app/lib/actions";
 
+import SubmitButton from "./submitButton";
+
 import styles from "@/app/ui/login/login.module.css";
 
 export default function LoginPage() {
@@ -13,15 +15,15 @@ export default function LoginPage() {
           type="text"
           placeholder="username"
           name="username"
-          value="testUser"
+          defaultValue="testUser"
         />
         <input
           type="password"
           placeholder="password"
           name="password"
-          value="123456"
+          defaultValue="123456"
         />
-        <button>Login</button>
+        <SubmitButton />
       </form>
     </div>
   );
