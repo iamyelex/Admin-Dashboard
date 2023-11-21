@@ -8,21 +8,21 @@ import { auth, signOut } from "@/app/auth";
 import styles from "@/app/ui/dashboard/sidebar/sidebar.module.css";
 
 export default async function Sidebar() {
-  const session = await auth();
-  console.log(session);
+  const { user } = await auth();
+  // console.log(user);
 
   return (
     <div className={styles.container}>
       <div className={styles.user}>
         <Image
           className={styles.userImage}
-          src="/noavatar.png"
+          src={user.img || "/noavatar.png"}
           alt=""
           width="50"
           height="50"
         />
         <div className={styles.userDetail}>
-          <span className={styles.username}>John Doe</span>
+          <span className={styles.username}>{user.username}</span>
           <span className={styles.userTitle}>Administrator</span>
         </div>
       </div>

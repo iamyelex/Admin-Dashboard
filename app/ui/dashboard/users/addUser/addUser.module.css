@@ -40,3 +40,7 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+.imgSpace {
+  flex-grow: 1;
+}

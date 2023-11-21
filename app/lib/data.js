@@ -1,5 +1,6 @@
 import { connectToDb } from "./utils";
 import { Product, User } from "./models";
+import notFound from "../dashboard/users/[id]/not-found";
 
 // FETCH ALL
 export const fetchUsers = async function (q, page) {
@@ -48,11 +49,12 @@ export const fetchSingleUser = async function (id) {
     connectToDb();
 
     const user = await User.findById(id);
-    // console.log(user);
+
     return user;
   } catch (error) {
-    console.log(error);
-    throw new Error("SINGLE_USER: Failed to fetch user");
+    // console.log(error);
+    // throw new Error("SINGLE_USER: Failed to fetch user");
+    return notFound();
   }
 };
 
@@ -64,7 +66,8 @@ export const fetchSingleProduct = async function (id) {
     // console.log(product);
     return product;
   } catch (error) {
-    console.log(error);
-    throw new Error("SINGLE_PRODUCT: Failed to fetch product");
+    // console.log(error);
+    // throw new Error("SINGLE_PRODUCT: Failed to fetch product");
+    return notFound();
   }
 };

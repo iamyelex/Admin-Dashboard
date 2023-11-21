@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { fetchSingleProduct } from "@/app/lib/data";
 import { updateProduct } from "@/app/lib/actions";
+import notFound from "./not-found";
 
 import styles from "@/app/ui/dashboard/products/singleProduct/singleProduct.module.css";
 
@@ -10,6 +11,10 @@ export default async function SingleProductPage({ params }) {
 
   const product = await fetchSingleProduct(id);
   // console.log(product);
+
+  if (product.key === null) {
+    return notFound();
+  }
   return (
     <div className={styles.container}>
       <div className={styles.infoContainer}>

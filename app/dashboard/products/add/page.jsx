@@ -17,6 +17,12 @@ export default function AddProductPage() {
         <input type="number" placeholder="stock" name="stock" required />
         <input type="text" placeholder="color" name="color" />
         <input type="text" placeholder="size" name="size" />
+        <input
+          type="text"
+          placeholder="imgLink"
+          name="img"
+          className={styles.imgSpace}
+        />
         <textarea
           required
           name="desc"

@@ -4,12 +4,16 @@ import { fetchSingleUser } from "@/app/lib/data";
 import { updateUser } from "@/app/lib/actions";
 
 import styles from "@/app/ui/dashboard/users/singleUser/singleUser.module.css";
+import notFound from "./not-found";
 
 export default async function SingleUserPage({ params }) {
   const { id } = params;
 
   const user = await fetchSingleUser(id);
-  // console.log(user);
+
+  if (user.key === null) {
+    return notFound();
+  }
   return (
     <div className={styles.container}>
       <div className={styles.infoContainer}>

@@ -25,6 +25,12 @@ export default function AddUserPage() {
           <option value={true}>Yes</option>
           <option value={false}>No</option>
         </select>
+        <input
+          type="text"
+          placeholder="image"
+          name="img"
+          className={styles.imgSpace}
+        />
 
         <textarea
           required

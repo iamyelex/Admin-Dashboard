@@ -10,7 +10,7 @@ import { signIn } from "@/app/auth";
 
 // CREATE
 export const addUser = async function (formData) {
-  const { username, email, password, phone, address, isAdmin, isActive } =
+  const { username, email, password, phone, address, isAdmin, isActive, img } =
     Object.fromEntries(formData);
 
   try {
@@ -27,6 +27,7 @@ export const addUser = async function (formData) {
       address,
       isAdmin,
       isActive,
+      img,
     });
 
     await newUser.save();
@@ -40,7 +41,7 @@ export const addUser = async function (formData) {
 };
 
 export const addProduct = async function (formData) {
-  const { title, desc, price, stock, color, size } =
+  const { title, desc, price, stock, color, size, img } =
     Object.fromEntries(formData);
 
   try {
@@ -53,6 +54,7 @@ export const addProduct = async function (formData) {
       stock,
       color,
       size,
+      img,
     });
 
     await newProduct.save();
