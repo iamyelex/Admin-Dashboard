@@ -6,7 +6,7 @@ import {
   MdOutlineChat,
   MdPublic,
   MdSearch,
-  MdOutlineWbSunny,
+  // MdOutlineWbSunny,
 } from "react-icons/md";
 
 import styles from "@/app/ui/dashboard/navbar/navbar.module.css";
@@ -26,7 +26,7 @@ export default function Navbar() {
           <MdOutlineChat size={20} />
           <MdNotifications size={20} />
           <MdPublic size={20} />
-          <MdOutlineWbSunny size={20} onClick={() => console.log("clicked")} />
+          {/* <MdOutlineWbSunny size={20} onClick={() => console.log("clicked")} /> */}
         </div>
       </div>
     </div>
